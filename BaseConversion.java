@@ -4,6 +4,8 @@
  * Java code to perform conversion and calculation
  */
 package NumberConversionAndCalculation;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Scanner;
 //Method in this code is to act as the entry point for a Base Conversion and Arithmetic Operations program
 public class BaseConversion {
@@ -16,6 +18,11 @@ public class BaseConversion {
             System.out.println(Constant.PERFORM_OPERATION);
             System.out.println(Constant.EXIT);
             System.out.print(Constant.ENTER_CHOICE);
+            if (!scanner.hasNextInt()) {
+                System.out.println(Constant.INVALID_CHOICE);
+                scanner.nextLine();  // Discard the invalid input
+                continue;
+            }
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -216,9 +223,25 @@ class BaseConversionUtil {
         }
         return result.toString();
     }
-    // Validate the number format for the given base
+ // Validate the number format for the given base
     private static boolean validateFormat(String number, int base) {
-        String regex = (base <= 10) ? "[0-" + (base - 1) + "]+" : "[0-9A-" + (char) ('A' + base - 11) + "]+";
-        return number.matches(regex);
+        // Base less than or equal to 10 uses digits only
+        String regex = (base <= 10) 
+            ? "[0-" + (base - 1) + "]+" 
+            : "[0-9A-" + (char) ('A' + base - 11) + "]+"; // Allows A-F for hex
+
+        // Validate integer and fractional parts separately
+        String[] parts = number.split("\\.");
+        if (!parts[0].matches(regex)) {
+            return false;
+        }
+
+        // If fractional part exists, validate it as well
+        if (parts.length == 2 && !parts[1].matches(regex)) {
+            return false;
+        }
+        
+        return true;
     }
+
 }

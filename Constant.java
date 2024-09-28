@@ -11,6 +11,7 @@ public class Constant {
 	public static String PERFORM_OPERATION = "2. Perform arithmetic operations";
 	public static String EXIT = "3. Exit";
 	public static String ENTER_CHOICE = "Enter your choice: ";
+	public static String VALID_INPUT = "Invalid input. Please enter a valid number.";
 	public static String  EXITING_PROGRAM = "Exiting the program. Goodbye!";
 	public static String INVALID_CHOICE = "Invalid choice. Please choose again.";
 	public static String ENTER_NUMBER = "\nEnter the number, input base, and output base separated by spaces (e.g., 1010 2 10): ";
@@ -27,5 +28,5 @@ public class Constant {
 	public static String CHOOSE_OUTPUT_BASE = "Choose output base:";
 	public static String BASE_BETWEEN_2_TO_36 ="Base must be between 2 and 36.";
 	public static String RESULT_IN_BASE = "Result in base ";
-	public static String INVALID_BASE_FORMAT = "Invalid format for base.";
+	public static String INVALID_BASE_FORMAT = "Invalid format for base ";
 }
